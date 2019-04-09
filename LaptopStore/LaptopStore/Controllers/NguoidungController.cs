@@ -23,7 +23,7 @@ namespace LaptopStore.Controllers
 
         public ActionResult Register()
         {
-
+            return View();
         }
     }
 }
