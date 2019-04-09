@@ -109,5 +109,20 @@ namespace LaptopStore.Controllers
 
         }
 
+        public ActionResult Search(string search)
+        {
+            var query = from l in data.LAPTOPs
+                        select l;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                query = query.Where(s => s.ProductName.Contains(search));
+            }
+
+            var dulieu = query.ToList();
+
+            return View(dulieu);
+        }
+
     }
 }
