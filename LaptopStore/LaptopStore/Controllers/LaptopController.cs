@@ -63,7 +63,6 @@ namespace LaptopStore.Controllers
             int pageNum = (page ?? 1);
             var l = from laptop in data.LAPTOPs where laptop.IDM == 5 select laptop;
             return View(l.ToPagedList(pageNum, pageSize));
-
         }
 
         public ActionResult MSI(int? page)
@@ -72,20 +71,15 @@ namespace LaptopStore.Controllers
             int pageNum = (page ?? 1);
             var l = from laptop in data.LAPTOPs where laptop.IDM == 4 select laptop;
             return View(l.ToPagedList(pageNum, pageSize));
-
         }
 
-
         //===============================
-
         //chi tiet laptop
         // select id, ProductName, Price, Screen, Cpu, Ram, Vga, OS, Quantity
         // from LAPTOP l, LAPTOPDETAILS d
         // where l.id = d.id
         public ActionResult Details(int id)
         {
-
-
             var laptop = (from l1 in data.LAPTOPs
                           join l2 in data.LAPTOPDETAILs
                           on l1.ID equals l2.ID
@@ -103,24 +97,18 @@ namespace LaptopStore.Controllers
                               laptopRam = l2.Ram,
                               laptopQuantity = (float)l2.Quantity
                           }).ToList();
-
-
             return View(laptop);
-
         }
 
         public ActionResult Search(string search)
         {
             var query = from l in data.LAPTOPs
                         select l;
-
             if (!String.IsNullOrEmpty(search))
             {
                 query = query.Where(s => s.ProductName.Contains(search));
             }
-
             var dulieu = query.ToList();
-
             return View(dulieu);
         }
 
