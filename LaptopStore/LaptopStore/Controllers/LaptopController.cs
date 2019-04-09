@@ -112,5 +112,10 @@ namespace LaptopStore.Controllers
             return View(dulieu);
         }
 
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
     }
 }
