@@ -239,7 +239,33 @@ namespace LaptopStore.Controllers
             return View(dulieu);
         }
 
-        
+        public ActionResult OrdersManager()
+        {
+            var order = (from o1 in data.orders
+                         join o2 in data.ordersdetails
+                         on o1.IDO equals o2.IDO
+                         join o3 in data.customers
+                         on o1.IDC equals o3.IDC
+                         join o4 in data.LAPTOPs
+                         on o2.ID equals o4.ID
+                         select new OrdersViewModel
+                         {
+                             ido = o1.IDO,
+                             TenkhachHang = o3.CustomersName,
+                             SdtKhachHang = o3.PhoneNumber,
+                             NgayDat = (DateTime)o1.OrderDate,
+                             NgayGiao = (DateTime)o1.DiliverDate,
+                             TenNguoiNhan = o1.Reciever,
+                             DiaChi = o1.Place,
+                             DienThoai = o1.Phone,
+                             TenSanPham = o4.ProductName,
+                             SoLuong = (int)o2.Number,
+                             Gia = (float)o2.Price,
+
+                         }).ToList();
+            return View(order);
+        }
+
 
     }
 }
