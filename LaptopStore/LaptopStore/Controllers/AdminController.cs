@@ -13,5 +13,10 @@ namespace LaptopStore.Controllers
         {
             return View();
         }
+
+        public ActionResult DanhSachDonHang()
+        {
+            return View();
+        }
     }
 }
