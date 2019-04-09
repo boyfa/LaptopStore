@@ -18,6 +18,6 @@ namespace LaptopStore.Controllers
         {
             return View();
         }
-
+        //can hien thi trang dang nhap
     }
 }
