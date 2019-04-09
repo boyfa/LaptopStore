@@ -82,5 +82,71 @@ namespace LaptopStore.Controllers
             return this.Dangky();
 
         }
+
+        [HttpGet]
+        public ActionResult Dangnhap()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Dangnhap(FormCollection collection)
+        {
+            // Gán các giá trị người dùng nhập liệu cho các biến 
+            var tendn = collection["Account"];
+            var matkhau = collection["Password"];
+
+            //this part is for admin login
+            //dang nhap vao tai khoan admin
+
+
+            if (String.IsNullOrEmpty(tendn))
+            {
+                ViewData["Loi1"] = "Phải nhập tên đăng nhập";
+            }
+            else if (String.IsNullOrEmpty(matkhau))
+            {
+                ViewData["Loi2"] = "Phải nhập mật khẩu";
+            }
+            else
+            {
+                administrator ad = data.administrators.SingleOrDefault(a => a.taikhoan == tendn && a.matkhau == matkhau);
+
+                //Gán giá trị cho đối tượng được tạo mới (kh)
+                customer cu = data.customers.SingleOrDefault(n => n.Account == tendn && n.Passwords == matkhau);
+                if (cu != null)
+                {
+                    ViewBag.Thongbao = "Chúc mừng đăng nhập thành công";
+                    Session["Taikhoan"] = cu;
+                    //Session["UserID"] = cu.IDC;
+                    Session["UserName"] = cu.Account;
+                    if (Session["Basket"] == null)
+                    {
+                        return RedirectToAction("Index", "Laptop");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Dathang", "Basket");
+                    }
+
+                }
+                else
+                {
+                    if (ad != null)
+                    {
+                        Session["Taikhoan"] = ad;
+                        Session["AdminName"] = ad.taikhoan;
+                        return RedirectToAction("Laptop", "Admin");
+                    }
+                    else
+                    {
+                        ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
+                    }
+                }
+
+
+
+            }
+            return View();
+        }
     }
 }
