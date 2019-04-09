@@ -1,0 +1,71 @@
+﻿@using LaptopStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<LaptopStore.Models.LAPTOP>
+
+
+@{
+    ViewBag.Title = "Laptop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Quản Lý Thông Tin Laptop</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="table-responsive-md">
+    <table class="table" border="1">
+        <tr>
+            <th style="width:200px">ProductName</th>
+            <th style="width:200px">Price</th>
+            <th style="width:200px">ImageCover</th>
+            <th style="width:200px">UpdateDate</th>
+            <th style="width:200px">Amount</th>
+            <th style="width:200px">IDM</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <div class="img-thumbnail">
+                        <img src="@Url.Content("~/Images/"+item.ImageCover)" style="width:100%; height:100%" />
+                    </div>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.manufacturer.ManufacturerName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "SuaSP", new { id = item.ID })
+                    @Html.ActionLink("Details", "Chitiet", new { id = item.ID })
+                    @Html.ActionLink("Delete", "XoaSP", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+    <div class="MenuTrang">
+
+        @Html.PagedListPager(Model, page => Url.Action("Laptop", new { page = page }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline-block;
+        }
+    </style>
+
