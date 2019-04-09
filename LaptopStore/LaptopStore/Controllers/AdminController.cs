@@ -18,5 +18,11 @@ namespace LaptopStore.Controllers
         {
             return View();
         }
+
+        public ActionResult Taikhoan()
+        {
+            return View();
+        }
+
     }
 }
