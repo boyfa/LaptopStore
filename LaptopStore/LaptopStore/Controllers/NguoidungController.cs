@@ -148,5 +148,14 @@ namespace LaptopStore.Controllers
             }
             return View();
         }
+
+
+        public ActionResult LogOut()
+        {
+            Session["Taikhoan"] = null;
+            Session.Abandon();
+            return RedirectToAction("Dangnhap", "NguoiDung");
+        }
+
     }
 }
