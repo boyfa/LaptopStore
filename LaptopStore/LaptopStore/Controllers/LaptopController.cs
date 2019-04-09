@@ -75,5 +75,39 @@ namespace LaptopStore.Controllers
 
         }
 
+
+        //===============================
+
+        //chi tiet laptop
+        // select id, ProductName, Price, Screen, Cpu, Ram, Vga, OS, Quantity
+        // from LAPTOP l, LAPTOPDETAILS d
+        // where l.id = d.id
+        public ActionResult Details(int id)
+        {
+
+
+            var laptop = (from l1 in data.LAPTOPs
+                          join l2 in data.LAPTOPDETAILs
+                          on l1.ID equals l2.ID
+                          where l1.ID == id
+                          select new LaptopDetailsViewModel
+                          {
+                              id = l1.ID,
+                              laptopName = l1.ProductName,
+                              laptopImage = l1.ImageCover,
+                              laptopPrice = (float)l1.Price,
+                              laptopScreen = l2.Screen,
+                              laptopCpu = l2.Cpu,
+                              laptopVga = l2.Vga,
+                              laptopOs = l2.OS,
+                              laptopRam = l2.Ram,
+                              laptopQuantity = (float)l2.Quantity
+                          }).ToList();
+
+
+            return View(laptop);
+
+        }
+
     }
 }
