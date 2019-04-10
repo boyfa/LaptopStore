@@ -56,5 +56,16 @@ namespace LaptopStore.Controllers
             }
             return iTongsoluong;
         }
+
+        private double Tongtien()
+        {
+            double iTongtien = 0;
+            List<Basket> lstBasket = Session["Basket"] as List<Basket>;
+            if (lstBasket != null)
+            {
+                iTongtien = lstBasket.Sum(n => n.dThanhtien);
+            }
+            return iTongtien;
+        }
     }
 }
