@@ -201,6 +201,7 @@
     <Content Include="Views\Laptop\Acer.cshtml" />
     <Content Include="Views\Laptop\Asus.cshtml" />
     <Content Include="Views\Laptop\Dell.cshtml" />
+    <Content Include="Views\Laptop\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

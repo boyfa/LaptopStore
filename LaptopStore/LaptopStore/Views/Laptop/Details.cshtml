@@ -1,0 +1,47 @@
+﻿@model List<LaptopStore.ViewModel.LaptopDetailsViewModel>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Details</h2>
+
+
+
+@foreach (var laptop in Model)
+{
+    <div class="row">
+        <div class="col-sm-4">
+
+            <div class="img-thumbnail">
+                <img src="/Images/@laptop.laptopImage" width="100%" height="100%" />
+                <div class="caption" style="text-align:center">
+                    <p style="color:red;font-weight:bold">Price: @String.Format("{0:0,0}", @laptop.laptopPrice) VND</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="row-fluid">
+                <div class="span2" style="height:80%; font-size:17px">
+                    <h2>@laptop.laptopName</h2>
+                    <p>Screen: @laptop.laptopScreen</p>
+                    <p>CPU: @laptop.laptopCpu</p>
+                    <p>Ram: @laptop.laptopRam</p>
+                    <p>VGA: @laptop.laptopVga</p>
+                    <p>OS: @laptop.laptopOs</p>
+                    <p>Quantity: @laptop.laptopQuantity kg</p>
+                </div>
+
+                <div class="span2" style="height:20%">
+                    <a href="@Url.Action("Addbasket", "Basket", new {@iMalaptop = @laptop.id, @strUrl = Request.Url.ToString() })">
+                        <button type="button" class="btn btn-success btn-md" style="float: right; margin-right: 5%;">Add to Cart</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
