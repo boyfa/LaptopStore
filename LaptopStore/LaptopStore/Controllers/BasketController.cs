@@ -120,5 +120,73 @@ namespace LaptopStore.Controllers
             lstBasket.Clear();
             return RedirectToAction("Index", "Laptop");
         }
+
+        [HttpGet]
+        public ActionResult Dathang()
+        {
+            if (Session["Taikhoan"] == null || Session["Taikhoan"].ToString() == "")
+            {
+                return RedirectToAction("Dangnhap", "Nguoidung");
+            }
+            if (Session["Basket"] == null)
+            {
+                return RedirectToAction("Index", "Laptop");
+            }
+            List<Basket> lstBasket = Laygiohang();
+            ViewBag.Tongsoluong = Tongsoluong();
+            ViewBag.Tongtien = Tongtien();
+            return View(lstBasket);
+
+        }
+
+        public ActionResult Dathang(FormCollection collection)
+        {
+            //initialize new object order
+            order ddh = new order();
+            //........... object customer
+            customer cu = (customer)Session["Taikhoan"];
+            //get basket 
+            //what is basket. 
+
+            List<Basket> gh = Laygiohang();
+            ddh.IDC = cu.IDC;
+            ddh.OrderDate = DateTime.Now;
+            var ngaygiao = String.Format("{0:dd/MM/yyyy}", collection["Ngaygiao"]);
+            var reciever = collection["reciever"];
+            var dc = collection["Place"];
+            var sdtnguoinhan = collection["sdt"];
+            ddh.DiliverDate = DateTime.Parse(ngaygiao);
+            ddh.Reciever = reciever;
+            ddh.Place = dc;
+            ddh.Phone = sdtnguoinhan;
+            ddh.Deliver = false;
+            ddh.Payment = false;
+            data.orders.InsertOnSubmit(ddh);
+            data.SubmitChanges();
+
+            foreach (var item in gh)
+            {
+                ordersdetail orde = new ordersdetail();
+                // details of the order: orde
+                orde.IDO = ddh.IDO;
+
+                orde.ID = item.iMalaptop;
+                orde.Number = item.iSoluong;
+                orde.Price = item.dDongia;
+                data.ordersdetails.InsertOnSubmit(orde);
+                data.SubmitChanges();
+            }
+
+            data.SubmitChanges();
+
+            Session["Basket"] = null;
+            return RedirectToAction("Xacnhandonhang", "Basket");
+        }
+
+        public ActionResult Xacnhandonhang()
+        {
+            return View();
+        }
+
     }
 }
