@@ -28,5 +28,22 @@ namespace LaptopStore.Controllers
             }
             return lstBasket;
         }
+
+        public ActionResult Addbasket(int iMalaptop, string strURL)
+        {
+            List<Basket> lstBasket = Laygiohang();
+            Basket sanpham = lstBasket.Find(n => n.iMalaptop == iMalaptop);
+            if (sanpham == null)
+            {
+                sanpham = new Basket(iMalaptop);
+                lstBasket.Add(sanpham);
+                return Redirect(strURL);
+            }
+            else
+            {
+                sanpham.iSoluong++;
+                return Redirect(strURL);
+            }
+        }
     }
 }
