@@ -182,5 +182,11 @@ namespace LaptopStore.Controllers
             Session["Basket"] = null;
             return RedirectToAction("Xacnhandonhang", "Basket");
         }
+
+        public ActionResult Xacnhandonhang()
+        {
+            return View();
+        }
+
     }
 }
