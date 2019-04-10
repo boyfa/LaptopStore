@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="~/Content/modern-business.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Good Laptop</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","Laptop")">HomePage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Contact","Laptop")">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Products
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+
+                            <a class="dropdown-item" href="@Url.Action("MacLaptop", "Laptop")">Apple</a>
+                            <a class="dropdown-item" href="@Url.Action("Acer", "Laptop")">Acer</a>
+                            <a class="dropdown-item" href="@Url.Action("Asus", "Laptop")">Asus</a>
+                            <a class="dropdown-item" href="@Url.Action("Dell", "Laptop")">Dell</a>
+                            <a class="dropdown-item" href="@Url.Action("HP", "Laptop")">HP</a>
+                            <a class="dropdown-item" href="@Url.Action("MSI", "Laptop")">MSI</a>
+
+
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+
+                            <a class="dropdown-item" href="@Url.Action("Dangky","NguoiDung")">Sign up</a>
+                            @if (Session["Taikhoan"] != null)
+                            {
+                                <a class="dropdown-item" href="#">Hello @Session["UserName"]</a>
+                            }
+                            @if (Session["Taikhoan"] == null)
+                            {
+                                <a class="dropdown-item" href="@Url.Action( "Dangnhap", "NguoiDung")">Sign in</a>
+                            }
+
+                            <a class="dropdown-item" href="@Url.Action("LogOut","NguoiDung")">Log out</a>
+
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="search-container">
+                            @using (Html.BeginForm("Search", "Laptop", FormMethod.Get))
+                            {
+
+                                @Html.TextBox("search", ViewBag.FilterValue as string)
+                                <button type="submit" class="btn btn-success btn-sm" style="margin-bottom:5px;">Search</button>
+
+                            }
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        @Html.Partial("/Views/Basket/GiohangPartial.cshtml")
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <!-- Slide One - Set the background image for this slide in the line below -->
+                <div class="carousel-item active" style="background-image: url(/Images/slide1.jpg);">
+
+                    <div class="carousel-caption d-none d-md-block">
+
+                        <h3>Best Products</h3>
+                        <h1>Ours products are imported from Exclusive distributors</h1>
+                    </div>
+                </div>
+                <!-- Slide Two - Set the background image for this slide in the line below -->
+                <div class="carousel-item" style="background-image: url(/Images/slide2.jpg);">
+
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Best Prices</h3>
+                        <h1>All are sold very Equitablely</h1>
+                    </div>
+                </div>
+                <!-- Slide Three - Set the background image for this slide in the line below -->
+                <div class="carousel-item" style="background-image: url(/Images/slide3.jpg);">
+
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Make you feel comfortable</h3>
+                        <h1>With full experience staff</h1>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </header>
+    <!-- Page Content -->
+
+    <div class="container">
+        <p></p>
+        <div>
+            @RenderBody()
+        </div>
+        <h1 class="my-4">Welcome to GoodLaptop</h1>
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-md-2 mb-4">
+                <div class="card h-100">
+
+                    <div class="card-body">
+                        <img src="~/Images/apple.png" style="width: 90%; height:90%" />
+                    </div>
+                    <div class="card-footer">
+                        <a href="@Url.Action( "MacLaptop", "Laptop")">
+                            <button type="button" class="btn btn-primary btn-md" style="float:right; margin-right:3%">Watch More</button>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-4">
+                <div class="card h-100">
+                    <!--<h4 class="card-header">Asus</h4>-->
+                    <div class="card-body">
+                        <img src="~/Images/asus.png" style="width: 100%; height:100%" />
+                    </div>
+                    <div class="card-footer">
+                        <a href="@Url.Action( "Asus", "Laptop")">
+                            <button type="button" class="btn btn-primary btn-md" style="float:right; margin-right:3%">Watch More</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-4">
+                <div class="card h-100">
+
+                    <div class="card-body">
+                        <img src="~/Images/acer.png" style="width: 100%; height:100%" />
+                    </div>
+                    <div class="card-footer">
+                        <a href="@Url.Action( "Acer", "Laptop")">
+                            <button type="button" class="btn btn-primary btn-md" style="float:right;margin-right:3%">Watch More</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-4">
+                <div class="card h-100">
+
+                    <div class="card-body">
+                        <img src="~/Images/dell.png" style="width: 100%; height:100%" />
+                    </div>
+                    <div class="card-footer">
+                        <a href="@Url.Action( "Dell", "Laptop")">
+                            <button type="button" class="btn btn-primary btn-md" style="float:right;margin-right:3%">Watch More</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-4">
+                <div class="card h-100">
+
+                    <div class="card-body">
+                        <img src="~/Images/hp.png" style="width: 100%; height:100%" />
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Watch More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-4">
+                <div class="card h-100">
+
+                    <div class="card-body">
+                        <img src="~/Images/msi.png" style="width: 100%; height:100%" />
+                    </div>
+                    <div class="card-footer">
+                        <a href="@Url.Action( "MSI", "Laptop")">
+                            <button type="button" class="btn btn-primary btn-md" style="float:right;margin-right:3%">Watch More</button>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- /.row -->
+        <!-- Portfolio Section -->
+        <!-- /.row -->
+        <!-- Features Section -->
+        <!--
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Modern Business Features</h2>
+                <p>The Modern Business template by Start Bootstrap includes:</p>
+                <ul>
+                    <li>
+                        <strong>Bootstrap v4</strong>
+                    </li>
+                    <li>jQuery</li>
+                    <li>Font Awesome</li>
+                    <li>Working contact form with validation</li>
+                    <li>Unstyled page elements for easy customization</li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+            </div>
+            <div class="col-lg-6">
+                <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
+            </div>
+        </div> -->
+        <!-- /.row -->
+        <hr>
+        <!-- Call to Action Section -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <p>Good Laptop was established by people, who have passion on computer. With the purpose bring to you the best products</p>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-lg btn-secondary btn-block" href="#">Page Up</a>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31352.358726175396!2d106.71245121894698!3d10.807877678350463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a459cb43ab%3A0x6c3d29d370b52a7e!2sHUTECH+University!5e0!3m2!1sen!2s!4v1524634665510" width="600" height="450" frameborder="0" style="border:0; position:relative;width:80%;margin: 10px 10% 10px 10%" allowfullscreen></iframe>
+            <p class="m-0 text-center text-white">Copyright &copy; Good Laptop 2018</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+</body>
+</html>
