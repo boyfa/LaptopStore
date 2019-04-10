@@ -1,15 +1,12 @@
 ﻿@model LaptopStore.Models.LAPTOP
-
 @{
     ViewBag.Title = "XoaSP";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>XÁC NHẬN THÔNG TIN LAP TOP CẦN XÓA</h2>
-
 <h3>Quyết định xóa sản phẩm này?</h3>
 <div>
-
     <hr />
     <dl class="dl-horizontal">
         <td>
@@ -18,53 +15,42 @@
         <dd>
             @Html.DisplayNameFor(model => model.ProductName)
         </dd>
-
         <dt>
             Giá Bán
         </dt>
         <dd>
             @String.Format("{0:0,0}", Model.Price) VNĐ
         </dd>
-
         <dt>
             Ảnh Sản Phẩm
         </dt>
         <dd>
             <img src="@Url.Content("~/Images/"+ Model.ImageCover)" style="width:120px" />
         </dd>
-
         <dt>
             Ngày Cập Nhật:
         </dt>
-
         <dd>
             @String.Format("{0:dd/MM/yyyy}", Model.UpdateDate)
-
-        </dd>
-
+       </dd>
         <dt>
             Số Lượng Còn :
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Amount)
         </dd>
-
         <dt>
             Hãng Sản Xuất:
         </dt>
-
         <dd>
             @Html.DisplayNameFor(model => model.manufacturer.ManufacturerName)
 
         </dd>
-
     </dl>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Laptop")

@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Searching Result</h2>
+@foreach (var laptop in Model)
+{
+    <tr>
+        <td>
+            <h2><a href="@Url.Action("Chitiet","Admin", new {id=laptop.ID})">@laptop.ProductName</a></h2>
+        </td>
+    </tr>
+}
