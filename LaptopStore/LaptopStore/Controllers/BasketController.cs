@@ -113,5 +113,12 @@ namespace LaptopStore.Controllers
             }
             return RedirectToAction("Basket");
         }
+
+        public ActionResult Xoatatcagiohang()
+        {
+            List<Basket> lstBasket = Laygiohang();
+            lstBasket.Clear();
+            return RedirectToAction("Index", "Laptop");
+        }
     }
 }
