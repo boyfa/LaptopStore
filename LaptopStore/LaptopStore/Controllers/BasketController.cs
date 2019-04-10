@@ -102,5 +102,16 @@ namespace LaptopStore.Controllers
             }
             return RedirectToAction("Basket");
         }
+
+        public ActionResult Capnhatgiohang(int iMaSP, FormCollection f)
+        {
+            List<Basket> lstBasket = Laygiohang();
+            Basket sanpham = lstBasket.SingleOrDefault(n => n.iMalaptop == iMaSP);
+            if (sanpham != null)
+            {
+                sanpham.iSoluong = int.Parse(f["txtSoluong"].ToString());
+            }
+            return RedirectToAction("Basket");
+        }
     }
 }
