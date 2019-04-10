@@ -45,5 +45,16 @@ namespace LaptopStore.Controllers
                 return Redirect(strURL);
             }
         }
+
+        private int Tongsoluong()
+        {
+            int iTongsoluong = 0;
+            List<Basket> lstBasket = Session["Basket"] as List<Basket>;
+            if (lstBasket != null)
+            {
+                iTongsoluong = lstBasket.Sum(n => n.iSoluong);
+            }
+            return iTongsoluong;
+        }
     }
 }
