@@ -1,0 +1,65 @@
+﻿@model List<LaptopStore.ViewModel.OrdersViewModel>
+
+@{
+    ViewBag.Title = "OrdersManager";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>OrdersManager</h2>
+
+<div class="table-responsive-md">
+    <table class="table" border="1">
+        <tr>
+            <th style="width:200px">Ten Khach Hang</th>
+            <th style="width:200px">Sdt KH</th>
+            <th style="width:200px">Ngay Dat</th>
+            <th style="width:200px">NgayGiao</th>
+            <th style="width:200px">Ten Nguoi Nhan</th>
+            <th style="width:200px">Dia Chi</th>
+            <th style="width:200px">Dien Thoai</th>
+            <th style="width:200px">Ten San Pham</th>
+            <th style="width:200px">So Luong</th>
+            <th style="width:200px">Don gia</th>
+        </tr>
+
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @order.TenkhachHang
+                </td>
+                <td>
+                    @order.SdtKhachHang
+                </td>
+                <td>
+                    @order.NgayDat
+                </td>
+                <td>
+                    @order.NgayGiao
+                </td>
+                <td>
+                    @order.TenNguoiNhan
+                </td>
+                <td>
+                    @order.DiaChi
+                </td>
+                <td>
+                    @order.DienThoai
+                </td>
+                <td>
+                    @order.TenSanPham
+                </td>
+                <td>
+                    @order.SoLuong
+                </td>
+                <td>
+                    @order.Gia
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+
