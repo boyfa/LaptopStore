@@ -1,0 +1,26 @@
+﻿@using LaptopStore.Models
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Search</h2>
+<div class="row">
+    @foreach (var laptop in Model)
+    {
+
+        <div class="col-sm-3">
+            <a href="@Url.Action("Details","Laptop", new {id=laptop.ID})"><img class="card-img-top" src="~/Images/@laptop.ImageCover" alt="" style="width:200px;height:200px"></a>
+        </div>
+        <div class="col-sm-6">
+            <h4>
+                <a href="@Url.Action("Details","Laptop", new {id=laptop.ID})">@laptop.ProductName</a>
+            </h4>
+        </div>
+        <div class="col-sm-3">
+            <p style="color:red;font-weight:bold">Price: @String.Format("{0:0,0}", @laptop.Price) VND</p>
+        </div>
+
+    }
+</div>
+

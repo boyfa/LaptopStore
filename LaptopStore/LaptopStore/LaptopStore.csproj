@@ -204,6 +204,9 @@
     <Content Include="Views\Laptop\Details.cshtml" />
     <Content Include="Views\Laptop\HP.cshtml" />
     <Content Include="Views\Laptop\MacLaptop.cshtml" />
+    <Content Include="Views\Laptop\MSI.cshtml" />
+    <Content Include="Views\Laptop\Contact.cshtml" />
+    <Content Include="Views\Laptop\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
