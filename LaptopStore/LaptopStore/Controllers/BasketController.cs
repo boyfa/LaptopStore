@@ -86,5 +86,21 @@ namespace LaptopStore.Controllers
             ViewBag.Tongtien = Tongtien();
             return PartialView();
         }
+
+        public ActionResult Xoagiohang(int iMaSp)
+        {
+            List<Basket> lstBasket = Laygiohang();
+            Basket sanpham = lstBasket.SingleOrDefault(n => n.iMalaptop == iMaSp);
+            if (sanpham != null)
+            {
+                lstBasket.RemoveAll(n => n.iMalaptop == iMaSp);
+                return RedirectToAction("Basket");
+            }
+            if (lstBasket.Count == 0)
+            {
+                return RedirectToAction("Index", "Laptop");
+            }
+            return RedirectToAction("Basket");
+        }
     }
 }
