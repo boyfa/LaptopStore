@@ -202,6 +202,7 @@
     <Content Include="Views\Basket\Basket.cshtml" />
     <Content Include="Views\Basket\Dathang.cshtml" />
     <Content Include="Views\Basket\GiohangPartial.cshtml" />
+    <Content Include="Views\Basket\Xacnhandonhang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
