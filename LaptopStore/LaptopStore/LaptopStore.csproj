@@ -199,11 +199,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Nguoidung\Dangky.cshtml" />
     <Content Include="Views\Nguoidung\Dangnhap.cshtml" />
+    <Content Include="Views\Basket\Basket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Basket\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
