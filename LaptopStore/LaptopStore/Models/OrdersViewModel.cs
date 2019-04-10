@@ -16,11 +16,7 @@ namespace LaptopStore.ViewModel
         public string DiaChi { get; set; }
         public string DienThoai { get; set; }
         public string TenSanPham { get; set; }
-
         public int SoLuong { get; set; }
         public double Gia { get; set; }
-
-
-
     }
 }
