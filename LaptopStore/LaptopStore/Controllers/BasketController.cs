@@ -67,5 +67,58 @@ namespace LaptopStore.Controllers
             }
             return iTongtien;
         }
+
+        public ActionResult Basket()
+        {
+            List<Basket> lstBasket = Laygiohang();
+            if (lstBasket.Count == 0)
+            {
+                return RedirectToAction("Index", "Laptop");
+            }
+            ViewBag.Tongsoluong = Tongsoluong();
+            ViewBag.Tongtien = Tongtien();
+            return View(lstBasket);
+        }
+
+        public ActionResult GiohangPartial()
+        {
+            ViewBag.Tongsoluong = Tongsoluong();
+            ViewBag.Tongtien = Tongtien();
+            return PartialView();
+        }
+
+        public ActionResult Xoagiohang(int iMaSp)
+        {
+            List<Basket> lstBasket = Laygiohang();
+            Basket sanpham = lstBasket.SingleOrDefault(n => n.iMalaptop == iMaSp);
+            if (sanpham != null)
+            {
+                lstBasket.RemoveAll(n => n.iMalaptop == iMaSp);
+                return RedirectToAction("Basket");
+            }
+            if (lstBasket.Count == 0)
+            {
+                return RedirectToAction("Index", "Laptop");
+            }
+            return RedirectToAction("Basket");
+        }
+
+        public ActionResult Capnhatgiohang(int iMaSP, FormCollection f)
+        {
+            List<Basket> lstBasket = Laygiohang();
+            Basket sanpham = lstBasket.SingleOrDefault(n => n.iMalaptop == iMaSP);
+            if (sanpham != null)
+            {
+                sanpham.iSoluong = int.Parse(f["txtSoluong"].ToString());
+            }
+            return RedirectToAction("Basket");
+        }
+
+        public ActionResult Xoatatcagiohang()
+        {
+            List<Basket> lstBasket = Laygiohang();
+            lstBasket.Clear();
+            return RedirectToAction("Index", "Laptop");
+        }
     }
 }
