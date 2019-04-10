@@ -67,5 +67,17 @@ namespace LaptopStore.Controllers
             }
             return iTongtien;
         }
+
+        public ActionResult Basket()
+        {
+            List<Basket> lstBasket = Laygiohang();
+            if (lstBasket.Count == 0)
+            {
+                return RedirectToAction("Index", "Laptop");
+            }
+            ViewBag.Tongsoluong = Tongsoluong();
+            ViewBag.Tongtien = Tongtien();
+            return View(lstBasket);
+        }
     }
 }
