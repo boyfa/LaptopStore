@@ -1,7 +1,6 @@
 ﻿@using LaptopStore.Models;
 @using PagedList.Mvc;
 @model PagedList.PagedList<LAPTOP>
-
 @{
     ViewBag.Title = "Acer";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
@@ -34,4 +33,3 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCo
         display: inline;
     }
 </style>
-
