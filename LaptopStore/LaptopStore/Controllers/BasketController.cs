@@ -79,5 +79,12 @@ namespace LaptopStore.Controllers
             ViewBag.Tongtien = Tongtien();
             return View(lstBasket);
         }
+
+        public ActionResult GiohangPartial()
+        {
+            ViewBag.Tongsoluong = Tongsoluong();
+            ViewBag.Tongtien = Tongtien();
+            return PartialView();
+        }
     }
 }
