@@ -201,6 +201,7 @@
     <Content Include="Views\Nguoidung\Dangnhap.cshtml" />
     <Content Include="Views\Basket\Basket.cshtml" />
     <Content Include="Views\Basket\Dathang.cshtml" />
+    <Content Include="Views\Basket\GiohangPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
