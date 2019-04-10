@@ -203,6 +203,7 @@
     <Content Include="Views\Laptop\Dell.cshtml" />
     <Content Include="Views\Laptop\Details.cshtml" />
     <Content Include="Views\Laptop\HP.cshtml" />
+    <Content Include="Views\Laptop\MacLaptop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
