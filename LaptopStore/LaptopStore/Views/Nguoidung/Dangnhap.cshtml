@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Dangnhap";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<table align="center">
+    <h3 style="text-align:center">ĐĂNG NHẬP</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td> Tên đăng nhật:</td>
+            <td>
+                @Html.TextBox("Account")
+                @ViewData["Loi1"]
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td align="right">  Mật khẩu:</td>
+            <td>
+                @Html.Password("Password")
+                @ViewData["Loi2"]
+
+                <h6 style="color:red; text-align:center"> @ViewBag.Thongbao</h6>
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td>
+                <a href="@Url.Action("DangKy", "NguoiDung")">
+                    <button type="button" class="btn btn-success" style="float:right; margin-right:5%">Register</button>
+                </a>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-success" style="float:right; margin-right:5%">Log in</button>
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
