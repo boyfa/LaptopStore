@@ -306,17 +306,25 @@
     <Content Include="Images\slide1.jpg" />
     <Content Include="Images\slide2.jpg" />
     <Content Include="Images\slide3.jpg" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.min.map" />
+    <Content Include="Scripts\jquery.slim.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.slim.js" />
+    <Content Include="Scripts\jquery.slim.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
