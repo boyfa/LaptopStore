@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LaptopShop" Class="dbLaptopShopDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.administrator" Member="administrators">
+    <Type Name="administrator">
+      <Column Name="taikhoan" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="matkhau" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="hoten" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ordersdetail" Member="ordersdetails">
+    <Type Name="ordersdetail">
+      <Column Name="IDO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="LAPTOP_ordersdetail" Member="LAPTOP" ThisKey="ID" OtherKey="ID" Type="LAPTOP" IsForeignKey="true" />
+      <Association Name="order_ordersdetail" Member="order" ThisKey="IDO" OtherKey="IDO" Type="order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.customers" Member="customers">
+    <Type Name="customer">
+      <Column Name="IDC" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomersName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Account" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Passwords" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ConfirmPassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Addresses" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="Birthdate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Association Name="customer_order" Member="orders" ThisKey="IDC" OtherKey="IDC" Type="order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LAPTOP" Member="LAPTOPs">
+    <Type Name="LAPTOP">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ImageCover" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LAPTOP_ordersdetail" Member="ordersdetails" ThisKey="ID" OtherKey="ID" Type="ordersdetail" />
+      <Association Name="LAPTOP_LAPTOPDETAIL" Member="LAPTOPDETAIL" ThisKey="ID" OtherKey="ID" Type="LAPTOPDETAIL" Cardinality="One" />
+      <Association Name="manufacturer_LAPTOP" Member="manufacturer" ThisKey="IDM" OtherKey="IDM" Type="manufacturer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LAPTOPDETAILS" Member="LAPTOPDETAILs">
+    <Type Name="LAPTOPDETAIL">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Screen" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Cpu" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ram" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Vga" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OS" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="LAPTOP_LAPTOPDETAIL" Member="LAPTOP" ThisKey="ID" OtherKey="ID" Type="LAPTOP" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.manufacturer" Member="manufacturers">
+    <Type Name="manufacturer">
+      <Column Name="IDM" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ManufacturerName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="manufacturer_LAPTOP" Member="LAPTOPs" ThisKey="IDM" OtherKey="IDM" Type="LAPTOP" />
+    </Type>
+  </Table>
+  <Table Name="dbo.orders" Member="orders">
+    <Type Name="order">
+      <Column Name="IDO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Payment" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Deliver" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DiliverDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Reciever" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Place" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="IDC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="order_ordersdetail" Member="ordersdetails" ThisKey="IDO" OtherKey="IDO" Type="ordersdetail" />
+      <Association Name="customer_order" Member="customer" ThisKey="IDC" OtherKey="IDC" Type="customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
