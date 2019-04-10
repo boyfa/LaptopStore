@@ -1,14 +1,10 @@
 ﻿@model List<LaptopStore.ViewModel.LaptopDetailsViewModel>
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
 <h2>Details</h2>
-
-
-
 @foreach (var laptop in Model)
 {
     <div class="row">
@@ -42,6 +38,3 @@
         </div>
     </div>
 }
-
-
-
